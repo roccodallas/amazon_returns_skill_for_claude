@@ -1,51 +1,68 @@
-# Amazon Returns & Orders — Claude Cowork Skill
+# Amazon Returns — Claude Cowork Plugin
 
-A Claude Cowork skill plugin that makes Amazon returns and order troubleshooting fast and hands-off. Tell Claude what you need, it handles the rest.
+A Claude Cowork skill plugin that makes Amazon returns fast and hands-off. Tell Claude what to return and where to drop it off — it handles everything else and gets you a QR code.
 
 ## What it does
 
-- **Returns with QR codes** — navigates Amazon, clicks through every screen, and gets you a no-box, no-label QR code for drop-off at Whole Foods, UPS, Kohl's, Staples, or Amazon Fresh
-- **Order troubleshooting** — handles missing packages, stolen packages, wrong items, items missing from packages, tracking issues, wrong charges, cancellations, and replacements
-- **Minimal input** — tells you upfront exactly what info it needs so you give it once and walk away
-- **Never gets stuck** — uses smart defaults for every intermediate Amazon screen so the flow runs end-to-end without blocking on confirmations
+- **Gets you a return QR code** — navigates Amazon, clicks through every screen, and gets you a no-box, no-label QR code for drop-off
+- **Handles multiple returns** — say "return my AirPods and the phone case" and it processes them back-to-back
+- **Minimal input** — only asks for drop-off location if you didn't say. Never asks unnecessary questions.
+- **Always refunds to your original payment method** — never gift card, never Amazon credit
+- **Never gets stuck** — uses smart defaults for every intermediate screen so the flow runs end-to-end
+
+## Drop-off locations
+
+- Whole Foods
+- UPS Store
+- Kohl's
+- Staples
+- Amazon Fresh
+
+All free, no box, no label needed.
 
 ## Install
 
-Add this plugin directory to Claude Cowork:
-
+**From GitHub (recommended):**
 ```
-claude plugins add /path/to/amazon-returns-plugin
+/plugin marketplace add roccodallas/amazon_returns_skill_for_claude
+/plugin install amazon-returns
 ```
 
-Or clone this repo and point Claude Cowork to it.
+**Or test locally:**
+```
+claude --plugin-dir /path/to/amazon-returns-plugin
+```
 
 ## Usage
 
-Just talk naturally. The skill auto-activates when you mention Amazon returns or order issues.
+Just talk naturally. The skill auto-activates when you mention Amazon returns.
 
-**Returns:**
 ```
 "Return my AirPods, drop off at Whole Foods"
 "I want to return the keyboard I bought last week, UPS"
+"Return my AirPods and the phone case, Kohl's"
 ```
 
-**Order issues:**
+If you forget to say where to drop off, it'll show you the options:
+
 ```
-"My Amazon package says delivered but I never got it"
-"Amazon sent me the wrong item"
-"My package was stolen"
-"Cancel my most recent Amazon order"
+Where do you want to drop it off?
+- Whole Foods
+- UPS Store
+- Kohl's
+- Staples
+- Amazon Fresh
 ```
 
-Claude navigates Amazon, finds the order, clicks through the return/issue flow, and stops only at the final submit button for your approval.
+Claude navigates Amazon, finds the order, clicks through the return flow, and stops only at the final submit for your approval.
 
 ## How it works
 
-1. You describe the problem
-2. Claude asks for any missing info (drop-off location is required for returns)
-3. Claude navigates to your Amazon orders, finds the item, and runs through the entire flow
-4. Claude stops at the final confirmation with a one-liner summary
-5. You say yes, done
+1. You say what to return and where to drop it off
+2. Claude navigates to your Amazon orders and finds the item
+3. Clicks through the entire return flow automatically
+4. Stops at the final confirmation with a one-liner summary
+5. You say yes, done — QR code on screen
 
 ## Requirements
 
